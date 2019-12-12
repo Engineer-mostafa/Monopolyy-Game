@@ -9,7 +9,7 @@ CardNine::CardNine(const CellPosition & pos) : Card(pos)
 void CardNine::ReadCardParameters(Grid * pGrid) {
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("New CardNine: Enter its CellNumber That you need the player to go if he pass by this card ...");
+	pOut->PrintMessage("New CardNine: Enter The CellNumber That You Need The Player To Go To If He Pass By This Card...");
 	sCellNumber = pIn->GetInteger(pOut);
 
 	pOut->ClearStatusBar();

@@ -211,6 +211,9 @@
     <ClCompile Include="Input_Dice_Action.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="CardTwo.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -318,9 +321,6 @@
     <ClInclude Include="Output.h">
       <Filter>GUIClasses</Filter>
     </ClInclude>
-    <ClInclude Include="UI_Info.h">
-      <Filter>GUIClasses</Filter>
-    </ClInclude>
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="Snake.h">
       <Filter>GameObjects</Filter>
@@ -348,6 +348,12 @@
     </ClInclude>
     <ClInclude Include="Input_Dice_Action.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CardTwo.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Info.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
