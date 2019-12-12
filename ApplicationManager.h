@@ -25,7 +25,8 @@ public:
 	// ========== Interface Management Functions ==========
 
 	Grid * GetGrid() const;    // Returns pointer to the Grid
-
+	Output* get_Pout() const;
+	Input* get_Pin() const;
 	void UpdateInterface() const;
 
 	// ========== Action-Related Functions ==========

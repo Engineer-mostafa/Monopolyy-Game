@@ -202,6 +202,15 @@
     <ClCompile Include="CardNine.cpp">
       <Filter>GameObjects\Cards</Filter>
     </ClCompile>
+    <ClCompile Include="to_design_mode.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="New_game.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Input_Dice_Action.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -330,6 +339,15 @@
     </ClInclude>
     <ClInclude Include="CardNine.h">
       <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="to_design_mode.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="New_game.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Input_Dice_Action.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

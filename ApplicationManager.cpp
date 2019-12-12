@@ -6,6 +6,9 @@
 #include "AddCardAction.h"
 #include "RollDiceAction.h"
 #include"DeleteGameObject.h"
+#include "Input_Dice_Action.h"
+#include "New_game.h"
+# include"to_design_mode.h"
 
 ///TODO: Add #include for all action types
 
@@ -31,6 +34,14 @@ ApplicationManager::~ApplicationManager()
 Grid * ApplicationManager::GetGrid() const
 {
 	return pGrid;
+}
+Output* ApplicationManager::get_Pout() const
+{
+	return pOut;
+}
+Input* ApplicationManager::get_Pin() const
+{
+	return pIn;
 }
 
 void ApplicationManager::UpdateInterface() const
@@ -85,6 +96,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case TO_DESIGN_MODE:
 		pOut->CreateDesignModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new to_design_mode(this);
+		break;
+	case Input_Dice_value:
+		pAct = new Input_Dice_Action(this);
+		break;
+	case New_Game:
+		pAct = new New_game(this);
 		break;
 
 		

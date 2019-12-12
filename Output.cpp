@@ -277,9 +277,8 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 void Output::PrintPlayersInfo(string info)
 {
 	///TODO: Clear what was written on the toolbar
-	pWind->SetPen(UI.ToolBarColor, 1);
-	pWind->SetBrush(UI.ToolBarColor);
-	pWind->DrawRectangle(300, 0, UI.width, UI.ToolBarHeight);
+	ClearToolBar();
+	CreatePlayModeToolBar();
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor);
 	pWind->SetFont(20, BOLD, BY_NAME, "Verdana");
@@ -385,6 +384,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 
 								  ///TODO: Draw the player circle in center(x,y) and filled with the playerColor passed to the function
 	pWind->SetBrush(playerColor);
+	pWind->SetPen(playerColor);
 	pWind->DrawCircle(x, y, radius);
 
 
