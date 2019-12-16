@@ -1,4 +1,7 @@
 #include "Player.h"
+#include"CardEight.h"
+#include"CardNine.h"
+
 #include "GameObject.h"
 
 Player::Player(Cell * pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum)
@@ -96,6 +99,16 @@ void Player::Move(Grid * pGrid, int diceNumber)
 
 	// 2- Check the turnCount to know if the wallet recharge turn comes (recharge wallet instead of move)
 	//    If yes, recharge wallet and reset the turnCount and return from the function (do NOT move)
+	if (pCell->GetGameObject()) {
+		if (dynamic_cast<CardEight*>(pCell->GetGameObject()) && turnCount != 3)
+		{
+			CardEight* p8 = (CardEight*)pCell->GetGameObject();
+			if (p8->IsPrevented(playerNum) == 1)
+				diceNumber = 0;
+		}
+	}
+		
+	
 	if (turnCount == 3)
 	{
 		wallet += 10 * diceNumber;
@@ -112,29 +125,23 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	ClearDrawing(pGrid->GetOutput());
 	pos.AddCellNum(diceNumber);
 	stepCount = pos.GetCellNum();
-	if (stepCount <= 99)
+	if ((pos.GetCellNum() + diceNumber) >= 99)
 	{
-		pGrid->UpdatePlayerCell(p, pos);
+		diceNumber = 99 - pos.GetCellNum();
+		pGrid->SetEndGame(true);
+		Output* pOut = pGrid->GetOutput();
+		pOut->PrintMessage("Player Number " + to_string(playerNum) + " Has Won");
 	}
-	else
-	{
-		CellPosition pos(0, 10);
-		pGrid->UpdatePlayerCell(p, pos);
-
-	}
-
-
-
-
 
 	// 5- Use pGrid->UpdatePlayerCell() func to Update player's cell POINTER (pCell) with the cell in the passed position, "pos" (the updated one)
 	//    the importance of this function is that it Updates the pCell pointer of the player and Draws it in the new position
-
-
+	pGrid->UpdatePlayerCell(this, pos);
 	// 6- Apply() the game object of the reached cell (if any)
-
+	if (pCell->GetGameObject())
+		(pCell->GetGameObject())->Apply(pGrid, this);
 	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
-
+	if (pos.GetCellNum()>99)
+		pGrid->SetEndGame(true);
 }
 
 void Player::AppendPlayerInfo(string & playersInfo) const
@@ -142,4 +149,8 @@ void Player::AppendPlayerInfo(string & playersInfo) const
 	playersInfo += "P" + to_string(playerNum) + "(";
 	playersInfo += to_string(wallet) + ", ";
 	playersInfo += to_string(turnCount) + ")";
+}
+int Player::GetjustRolledDiceNum() const
+{
+	return justRolledDiceNum;
 }

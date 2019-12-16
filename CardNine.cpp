@@ -19,16 +19,16 @@ void CardNine::ReadCardParameters(Grid * pGrid) {
 void CardNine::Apply(Grid* pGrid, Player* pPlayer) {
 	Card::Apply(pGrid, pPlayer);
 	int currentcell = pPlayer->GetCell()->GetGameObject()->GetPosition().GetCellNum();
-	int newcell;
+	int diffroll;
 	if (currentcell > sCellNumber) {
-		newcell = currentcell - sCellNumber;
-		pPlayer->GetCell()->GetCellPosition().AddCellNum(-newcell);
-		pPlayer->SetCell(pPlayer->GetCell());
-		pPlayer->Move(pGrid, newcell);
+		diffroll = currentcell - sCellNumber;
+		CellPosition cp(currentcell - diffroll);
+		pGrid->UpdatePlayerCell(pPlayer, cp);
 	}
 	else {
-		newcell = sCellNumber - currentcell;
-		pPlayer->Move(pGrid, newcell);
+		diffroll = sCellNumber - currentcell;
+		CellPosition cp(currentcell + diffroll);
+		pGrid->UpdatePlayerCell(pPlayer, cp);
 	}
 
 

@@ -30,6 +30,8 @@ public:
 	int GetWallet() const;			// a getter for the wallet
 
 	int GetTurnCount() const;		// A getter for the turnCount
+	int GetjustRolledDiceNum() const; // A getter for the justRolledDiceNum
+
 	void set_turncount(int);           // A setter for the turn count
 	int get_curr_player_num();
 	int get_stepcount();

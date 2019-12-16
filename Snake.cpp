@@ -30,6 +30,7 @@ void Snake::Apply(Grid* pGrid, Player* pPlayer)
 	// 2- Apply the ladder's effect by moving the player to the endCellPos
 	//    Review the "pGrid" functions and decide which function can be used for that
 	pGrid->UpdatePlayerCell(pPlayer, endCellPos);
+	((pPlayer->GetCell())->GetGameObject())->Apply(pGrid, pPlayer);
 
 }
 

@@ -14,6 +14,12 @@ CellPosition GameObject::GetPosition() const
 GameObject::~GameObject()
 {
 }
+void GameObject::SetPosition(CellPosition pos)
+{
+	if (pos.IsValidCell())
+		position = pos;
+
+}
 int GameObject::Num_Of_Laders = 0;
 
 int GameObject::Num_Of_Snakes = 0;

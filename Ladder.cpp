@@ -33,6 +33,13 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 
 	//    Review the "pGrid" functions and decide which function can be used for that
 	pGrid->UpdatePlayerCell(pPlayer, endCellPos);
+	if (endCellPos.GetCellNum() == 99)
+	{
+		pGrid->SetEndGame(true);
+		Output* pOut = pGrid->GetOutput();
+		pOut->PrintMessage("Player " + to_string(pGrid->GetcurrPlayerNumber()) + " Has Won");
+	}
+	((pPlayer->GetCell())->GetGameObject())->Apply(pGrid, pPlayer);
 
 }
 

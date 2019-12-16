@@ -4,6 +4,12 @@
 #include "Output.h"
 #include "CardOne.h"
 #include "CardTwo.h"
+#include "CardThree.h"
+#include "CardFour.h"
+#include "CardFive.h"
+#include "CardSix.h"
+#include "CardSeven.h"
+#include"CardEight.h"
 #include "CardNine.h"
 
 AddCardAction::AddCardAction(ApplicationManager *pApp) : Action(pApp)
@@ -72,6 +78,27 @@ void AddCardAction::Execute()
 	case 2:
 		pCard = new CardTwo(cardPosition);
 		break;
+	case 3:
+		pCard = new CardThree(cardPosition);
+		break;
+
+	case 4:
+		pCard = new CardFour(cardPosition);
+		break;
+	case 5:
+		pCard = new CardFive(cardPosition);
+		break;
+	case 6:
+		pCard = new CardSix(cardPosition);
+		break;
+
+	case 7:
+		pCard = new CardSeven(cardPosition);
+		break;
+
+	case 8:
+		pCard = new CardEight(cardPosition);
+		break;
 	case 9:
 		pCard = new CardNine(cardPosition);
 		break;
@@ -98,7 +125,6 @@ void AddCardAction::Execute()
 		// D- if the GameObject cannot be added in the Cell, Print the appropriate error message on statusbar
 		if (!m) {
 			pGrid->PrintErrorMessage("error: you can't add this card to this cell");
-			pGrid->RemoveObjectFromCell(cardPosition);
 			delete pCard;
 			pCard = NULL;
 		}

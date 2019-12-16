@@ -3,7 +3,6 @@
 class CopyCardAction :
 	public Action
 {
-	int cardNumber;            // 1- the card number
 	CellPosition cardPosition;
 
 public:

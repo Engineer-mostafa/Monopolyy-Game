@@ -41,8 +41,14 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 }
 
 bool Card::IsOverlapping(GameObject * obj) {
-	return 0;
+
+	if (dynamic_cast<Card*>(obj))
+		if (((obj->GetPosition()).VCell()) == position.VCell() && ((obj->GetPosition()).HCell()) == position.HCell())
+			return true;
+
+	return false;
 }
+
 void Card::Save(ofstream &OutFile, int i, int Type) {
 	if (i == 0 && Type == 2)
 		OutFile << Num_Of_Cardes << endl;

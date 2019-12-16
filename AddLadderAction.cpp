@@ -51,10 +51,9 @@ void AddLadderAction::Execute()
 	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
 
 										// Add the card object to the GameObject of its Cell:
-	if (startPos.GetCellNum() < endPos.GetCellNum() && startPos.HCell() == endPos.HCell()) {
+	if (startPos.GetCellNum() < endPos.GetCellNum() && startPos.HCell() == endPos.HCell() && startPos.IsValidCell() && endPos.IsValidCell()) {
 		added = pGrid->AddObjectToCell(pLadder);
 	}
-
 	else
 	{
 		added = false;
@@ -64,7 +63,6 @@ void AddLadderAction::Execute()
 	if (!added)
 	{
 
-		pGrid->RemoveObjectFromCell(startPos);
 		// Print an appropriate message
 		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
 		delete pLadder;

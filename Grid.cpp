@@ -159,8 +159,27 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 
 
 			///TODO: Check if CellList[i][j] has a ladder, if yes return it
+			if (dynamic_cast<Ladder*>(CellList[i][j]->GetGameObject()))
+				return (Ladder*)(CellList[i][j]->GetGameObject());
 
 
+
+		}
+		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
+	}
+	return NULL; // not found
+}
+Snake * Grid::GetNextSnake(const CellPosition & position)
+{
+
+	int startH = position.HCell(); // represents the start hCell in the current row to search for the ladder in
+	for (int i = position.VCell(); i >= 0; i--) // searching from position.vCell and ABOVE
+	{
+		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
+		{
+			///TODO: Check if CellList[i][j] has a ladder, if yes return it
+			if (dynamic_cast<Snake*>(CellList[i][j]->GetGameObject()))
+				return (Snake*)(CellList[i][j]->GetGameObject());
 
 		}
 		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
@@ -219,7 +238,11 @@ void Grid::UpdateInterface() const
 		// In addition, cards/snakes/ladders do NOT change positions in Play Mode, so need to draw them here too
 	}
 }
+int Grid::GetcurrPlayerNumber()
+{
+	return currPlayerNumber;
 
+}
 void Grid::PrintErrorMessage(string msg)
 {
 	pOut->PrintMessage(msg);
