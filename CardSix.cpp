@@ -32,3 +32,15 @@ void CardSix::Apply(Grid* pGrid, Player* pPlayer)
 	CellPosition cp((pPlayer->GetCell())->GetCellPosition().GetCellNum() - pPlayer->GetjustRolledDiceNum());
 	pGrid->UpdatePlayerCell(pPlayer, cp);
 }
+void CardSix::Save(ofstream &OutFile, int i, int Type) {
+	if (i == 0 && Type == 2)
+		OutFile << Num_Of_Cardes << endl;
+
+	if (Type == 2)
+		OutFile << GetCardNumber() << "  " << position.GetCellNum() << endl;
+	return;
+
+}
+void CardSix::Load(ifstream &Infile) {
+
+}

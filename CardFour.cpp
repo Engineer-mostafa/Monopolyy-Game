@@ -47,3 +47,15 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 	}
 
 }
+void CardFour ::Save(ofstream &OutFile, int i, int Type) {
+	if (i == 0 && Type == 2)
+		OutFile << Num_Of_Cardes << endl;
+
+	if (Type == 2)
+		OutFile << GetCardNumber() << "  " << position.GetCellNum() << endl;
+	return;
+
+}
+void  CardFour::Load(ifstream &Infile) {
+
+}

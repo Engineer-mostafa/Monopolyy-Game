@@ -40,6 +40,15 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 		Card::Apply(pGrid, pPlayer);
 
 }
+void CardEight::Save(ofstream &OutFile, int i, int Type) {
+	if (i == 0 && Type == 2)
+		OutFile << Num_Of_Cardes << endl;
+
+	if (Type == 2)
+		OutFile << GetCardNumber() << "  " << position.GetCellNum() << endl;
+	return;
+
+}
 int CardEight::IsPrevented(int playernum)
 {
 	if (prevent[playernum] == 1)
@@ -47,5 +56,8 @@ int CardEight::IsPrevented(int playernum)
 
 	if (prevent[playernum] == 0)
 		return prevent[playernum]++;
+
+}
+void CardEight::Load(ifstream &Infile) {
 
 }

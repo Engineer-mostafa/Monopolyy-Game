@@ -50,16 +50,11 @@ bool Card::IsOverlapping(GameObject * obj) {
 }
 
 void Card::Save(ofstream &OutFile, int i, int Type) {
-	if (i == 0 && Type == 2)
-		OutFile << Num_Of_Cardes << endl;
-
-	if (Type == 2)
-		OutFile << GetCardNumber() << "  " << position.GetCellNum() << endl;
-	return;
 }
 void Card::Load(ifstream &Infile) {
 
 }
+
 Card::~Card()
 {
 	--Num_Of_Cardes;

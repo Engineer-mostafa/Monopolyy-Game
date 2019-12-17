@@ -13,6 +13,8 @@ public:
 													  // by decrementing the player's wallet by the walletAmount data member
 
 	int IsPrevented(int playernum);
+	virtual void Save(ofstream &OutFile, int i, int Type);	// Saves the GameObject parameters to the file
+	virtual void Load(ifstream &Infile);
 	virtual ~CardEight(); // A Virtual Destructor
 };
 

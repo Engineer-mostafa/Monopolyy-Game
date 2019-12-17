@@ -56,6 +56,18 @@ void CardNine::Apply(Grid* pGrid, Player* pPlayer) {
 
 
 }
+void CardNine::Save(ofstream &OutFile, int i, int Type) {
+	if (i == 0 && Type == 2)
+		OutFile << Num_Of_Cardes << endl;
+
+	if (Type == 2)
+		OutFile << GetCardNumber() << "  " << position.GetCellNum() << " " << sCellNumber << endl;
+	return;
+
+}
+void  CardNine::Load(ifstream &Infile) {
+
+}
 CardNine::~CardNine()
 {
 }

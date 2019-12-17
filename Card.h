@@ -26,7 +26,7 @@ public:
 													   // It is a virtual function (implementation depends on Card Type)
 	virtual bool IsOverlapping(GameObject * obj);
 
-	virtual void Save(ofstream &OutFile, int i, int Type);	// Saves the GameObject parameters to the file
+	virtual void Save(ofstream &OutFile, int i, int Type) ;	// Saves the GameObject parameters to the file
 	virtual void Load(ifstream &Infile);
 	virtual ~Card(); // A Virtual Destructor
 
