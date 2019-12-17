@@ -26,6 +26,7 @@ void to_design_mode::Execute()
 	pout->ClearStatusBar();
 	pout->CreateDesignModeToolBar();
 	Grid* pg = pManager->GetGrid();
+	pg->SetEndGame(true);
 	for (int i = 0; i<MaxPlayerCount; i++)
 	{
 		Player* p = pg->GetCurrentPlayer();

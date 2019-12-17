@@ -9,6 +9,7 @@
 #include "PasteCardAction.h"
 #include "RollDiceAction.h"
 #include"DeleteGameObject.h"
+#include "SaveGridAction.h"
 #include "Input_Dice_Action.h"
 #include "New_game.h"
 # include"to_design_mode.h"
@@ -123,8 +124,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new New_game(this);
 		break;
 
-		
-
+	case Save_Grid :
+		pAct = new SaveGridAction(this);
+		break;
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode
 	case Delete_Game_Object:
 		pAct= new DeleteGameObject(this);

@@ -27,7 +27,6 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 
 	// 1- Print a message "You have reached a ladder. Click to continue ..." and wait mouse click
 	pGrid->PrintErrorMessage("You have reached a ladder. Click to continue ...");
-	pGrid->GetInput()->GetCellClicked();
 
 	// 2- Apply the ladder's effect by moving the player to the endCellPos
 
@@ -39,8 +38,10 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 		Output* pOut = pGrid->GetOutput();
 		pOut->PrintMessage("Player " + to_string(pGrid->GetcurrPlayerNumber()) + " Has Won");
 	}
-	((pPlayer->GetCell())->GetGameObject())->Apply(pGrid, pPlayer);
 
+	if (pPlayer->GetCell()->GetGameObject()) {
+		((pPlayer->GetCell())->GetGameObject())->Apply(pGrid, pPlayer);
+	}
 }
 
 CellPosition Ladder::GetEndPosition() const
