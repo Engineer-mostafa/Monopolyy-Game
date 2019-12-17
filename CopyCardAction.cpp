@@ -42,32 +42,45 @@ void CopyCardAction::Execute()
 
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-
-
-	// == Here are some guideline steps (numbered below) to implement this function ==
-
-	// 1- The first line of any Action Execution is to read its parameter first
-	ReadActionParameters();
-	// 2- Switch case on cardNumber data member and create the appropriate card object type
-	Card * pCard = NULL;
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
 
-	///////////////////// validations
-	if (cardPosition.IsValidCell())
-	{
+	pOut->PrintMessage("Are You Sure You Need To Copy Card ? Click 1 - 0 | YES = 1 || NO == 0");
+	int i = pIn->GetInteger(pOut);
+	if (i == 1) {
+
+		// == Here are some guideline steps (numbered below) to implement this function ==
+
+		// 1- The first line of any Action Execution is to read its parameter first
+		ReadActionParameters();
+		// 2- Switch case on cardNumber data member and create the appropriate card object type
+		Card * pCard = NULL;
+		Grid* pGrid = pManager->GetGrid();
+		Output* pOut = pGrid->GetOutput();
+
+		///////////////////// validations
+		if (cardPosition.IsValidCell())
+		{
 
 
-		pCard = new Card(cardPosition); // will point to the card object type
-		if ((pGrid->IsOverlapping(pCard)))
-			pGrid->SetClipboard(pCard);
+			pCard = new Card(cardPosition); // will point to the card object type
+			if ((pGrid->IsOverlapping(pCard)))
+				pGrid->SetClipboard(pCard);
+			else
+				pOut->PrintMessage("Error: There is No Card In This Cell");
+		}
+
 		else
-			pOut->PrintMessage("error: There is no Card In This Cell");
+			pOut->PrintMessage("Error: There is No Card In This Cell");
 	}
-
 	else
-		pOut->PrintMessage("error: There is no Card In This Cell");
-
+	{
+		pOut->PrintMessage("You Just Cancelled The Copy Card | Click To Continue...");
+		pIn->GetCellClicked();
+		pOut->ClearStatusBar();
+		return;
+	}
 
 
 }

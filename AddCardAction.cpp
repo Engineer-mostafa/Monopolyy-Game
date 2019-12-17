@@ -62,75 +62,89 @@ void AddCardAction::Execute()
 
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
+	pOut->PrintMessage("Are You Sure You Need To Save Grid ? Click 1 - 0 | YES = 1 || NO == 0");
+	int i = pIn->GetInteger(pOut);
+	if (i == 1) {
+
+		ReadActionParameters();
+		Card * pCard = NULL; // will point to the card object type
+		switch (cardNumber)
+		{
+		case 1:
+			pCard = new CardOne(cardPosition);
+			break;
+		case 2:
+			pCard = new CardTwo(cardPosition);
+			break;
+		case 3:
+			pCard = new CardThree(cardPosition);
+			break;
+
+		case 4:
+			pCard = new CardFour(cardPosition);
+			break;
+		case 5:
+			pCard = new CardFive(cardPosition);
+			break;
+		case 6:
+			pCard = new CardSix(cardPosition);
+			break;
+
+		case 7:
+			pCard = new CardSeven(cardPosition);
+			break;
+
+		case 8:
+			pCard = new CardEight(cardPosition);
+			break;
+		case 9:
+			pCard = new CardNine(cardPosition);
+			break;
+			// A- Add the remaining cases
+
+		}
+		// 3- if pCard is correctly set in the switch case (i.e. if pCard is pointing to an object -- NOT NULL)
+		if (pCard)
+		{
+			// A- We get a pointer to the Grid from the ApplicationManager
+			Grid* pGrid = pManager->GetGrid();
+			// B- Make the "pCard" reads its card parameters: ReadCardParameters(), It is virtual and depends on the card type
+			pCard->ReadCardParameters(pGrid);
+			// C- Add the card object to the GameObject of its Cell:
+			bool m = true;
 
 
+			if (cardPosition.IsValidCell()) {
+				m = pGrid->AddObjectToCell(pCard);
+			}
+			else
+				m = false;
+
+			// D- if the GameObject cannot be added in the Cell, Print the appropriate error message on statusbar
+			if (!m) {
+				pGrid->PrintErrorMessage("error: you can't add this card to this cell");
+				delete pCard;
+				pCard = NULL;
+			}
+
+		}
+
+	}
 	// == Here are some guideline steps (numbered below) to implement this function ==
-
+	else
+	{
+		pOut->PrintMessage("You Just Cancelled The Add Card | Click To Continue...");
+		pIn->GetCellClicked();
+		pOut->ClearStatusBar();
+		return;
+	}
 	// 1- The first line of any Action Execution is to read its parameter first
-	ReadActionParameters();
 	// 2- Switch case on cardNumber data member and create the appropriate card object type
-	Card * pCard = NULL; // will point to the card object type
-	switch (cardNumber)
-	{
-	case 1:
-		pCard = new CardOne(cardPosition);
-		break;
-	case 2:
-		pCard = new CardTwo(cardPosition);
-		break;
-	case 3:
-		pCard = new CardThree(cardPosition);
-		break;
-
-	case 4:
-		pCard = new CardFour(cardPosition);
-		break;
-	case 5:
-		pCard = new CardFive(cardPosition);
-		break;
-	case 6:
-		pCard = new CardSix(cardPosition);
-		break;
-
-	case 7:
-		pCard = new CardSeven(cardPosition);
-		break;
-
-	case 8:
-		pCard = new CardEight(cardPosition);
-		break;
-	case 9:
-		pCard = new CardNine(cardPosition);
-		break;
-		// A- Add the remaining cases
-
-	}
-	// 3- if pCard is correctly set in the switch case (i.e. if pCard is pointing to an object -- NOT NULL)
-	if (pCard)
-	{
-		// A- We get a pointer to the Grid from the ApplicationManager
-		Grid* pGrid = pManager->GetGrid();
-		// B- Make the "pCard" reads its card parameters: ReadCardParameters(), It is virtual and depends on the card type
-		pCard->ReadCardParameters(pGrid);
-		// C- Add the card object to the GameObject of its Cell:
-		bool m = true;
-
-
-		if (cardPosition.IsValidCell()) {
-			m = pGrid->AddObjectToCell(pCard);
-		}
-		else
-			m = false;
-
-		// D- if the GameObject cannot be added in the Cell, Print the appropriate error message on statusbar
-		if (!m) {
-			pGrid->PrintErrorMessage("error: you can't add this card to this cell");
-			delete pCard;
-			pCard = NULL;
-		}
-
-	}
-
+	
 	// Here, the card is created and added to the GameObject of its Cell, so we finished executing the AddCardAction
 
 }

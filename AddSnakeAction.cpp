@@ -42,29 +42,43 @@ void AddSnakeAction::ReadActionParameters()
 // Execute the action
 void AddSnakeAction::Execute()
 {
-	// The first line of any Action Execution is to read its parameter first 
-	// and hence initializes its data members
-	ReadActionParameters();
-	bool added = true;
-	// Create a Ladder object with the parameters read from the user
-	Snake * pSnake = new Snake(startPos, endPos);
-	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
 
-										// Add the card object to the GameObject of its Cell:
-	if (endPos.GetCellNum() < startPos.GetCellNum() && endPos.HCell() == startPos.HCell()) {
-		added = pGrid->AddObjectToCell(pSnake);
+	pOut->PrintMessage("Are You Sure You Need To Add Snake ? Click 1 - 0 | YES = 1 || NO == 0");
+	int i = pIn->GetInteger(pOut);
+	if (i == 1) {
+		// The first line of any Action Execution is to read its parameter first 
+		// and hence initializes its data members
+		ReadActionParameters();
+		bool added = true;
+		// Create a Ladder object with the parameters read from the user
+		Snake * pSnake = new Snake(startPos, endPos);
+		Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
+
+											// Add the card object to the GameObject of its Cell:
+		if (endPos.GetCellNum() < startPos.GetCellNum() && endPos.HCell() == startPos.HCell()) {
+			added = pGrid->AddObjectToCell(pSnake);
+		}
+		else
+			added = false;
+
+		// if the GameObject cannot be added
+		if (!added)
+		{
+			// Print an appropriate message
+			pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+			delete pSnake;
+			pSnake = NULL;
+		}
+		// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
 	}
 	else
-		added = false;
-
-	// if the GameObject cannot be added
-	if (!added)
 	{
-		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
-		delete pSnake;
-		pSnake = NULL;
+		pOut->PrintMessage("You Just Cancelled The Add Snake | Click To Continue...");
+		pIn->GetCellClicked();
+		pOut->ClearStatusBar();
+		return;
 	}
-	// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
-
 }

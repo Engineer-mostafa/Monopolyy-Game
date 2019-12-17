@@ -27,23 +27,39 @@ void SaveGridAction::Execute() {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("Please Enter Your Grid Name");
+	pOut->PrintMessage("Are You Sure You Need To Save Grid ? Click 1 - 0 | YES = 1 || NO == 0");
+	int i = pIn->GetInteger(pOut);
+	if (i == 1) {
+		pOut->PrintMessage("Please Enter Your Grid Name");
 
-	string x = pIn->GetSrting(pOut);
-	ofstream Out;
+		string x = pIn->GetSrting(pOut);
+		ofstream Out;
 
-	Out.open(x + ".txt");
-
-
-	pGrid->SaveAll(Out, 0);
-
-
-	pGrid->SaveAll(Out, 1);
+		Out.open(x + ".txt");
 
 
-	pGrid->SaveAll(Out, 2);
+		pGrid->SaveAll(Out, 0);
 
-	Out.close();
+
+		pGrid->SaveAll(Out, 1);
+
+
+		pGrid->SaveAll(Out, 2);
+
+		Out.close();
+		pOut->PrintMessage("You Just Saved The Grid Click To Continue...");
+		pIn->GetCellClicked();
+		pOut->ClearStatusBar();
+	}
+	else {
+		pOut->PrintMessage("You Just Cancelled The Save | Click To Continue...");
+		pIn->GetCellClicked();
+		pOut->ClearStatusBar();
+		return;
+	}
+		
+
+	
 }
 
 SaveGridAction::~SaveGridAction()

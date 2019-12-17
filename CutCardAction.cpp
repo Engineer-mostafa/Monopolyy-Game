@@ -46,32 +46,45 @@ void CutCardAction::Execute()
 
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
-
-	// 1- The first line of any Action Execution is to read its parameter first
-	ReadActionParameters();
-	// 2- Switch case on cardNumber data member and create the appropriate card object type
-	Card * pCard = NULL;
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
 
-	///////////////////// validations
-	if (cardPosition.IsValidCell())
-	{
+	pOut->PrintMessage("Are You Sure You Need To Cut Card ? Click 1 - 0 | YES = 1 || NO == 0");
+	int i = pIn->GetInteger(pOut);
+	if (i == 1) {
+		// 1- The first line of any Action Execution is to read its parameter first
+		ReadActionParameters();
+		// 2- Switch case on cardNumber data member and create the appropriate card object type
+		Card * pCard = NULL;
+		Grid* pGrid = pManager->GetGrid();
+		Output* pOut = pGrid->GetOutput();
 
-
-		pCard = new Card(cardPosition); // will point to the card object type
-		if ((pGrid->IsOverlapping(pCard)))
+		///////////////////// validations
+		if (cardPosition.IsValidCell())
 		{
-			pGrid->SetClipboard(pCard);
-			pGrid->RemoveObjectFromCell(cardPosition);
+
+
+			pCard = new Card(cardPosition); // will point to the card object type
+			if ((pGrid->IsOverlapping(pCard)))
+			{
+				pGrid->SetClipboard(pCard);
+				pGrid->RemoveObjectFromCell(cardPosition);
+			}
+			else
+				pOut->PrintMessage("Error: There is No Card In This Cell");
 		}
+
 		else
-			pOut->PrintMessage("error: There is no Card In This Cell");
+			pOut->PrintMessage("Error: There is No Card In This Cell");
 	}
-
 	else
-		pOut->PrintMessage("error: There is no Card In This Cell");
-
+	{
+		pOut->PrintMessage("You Just Cancelled The Cut Card | Click To Continue...");
+		pIn->GetCellClicked();
+		pOut->ClearStatusBar();
+		return;
+	}
 
 
 }

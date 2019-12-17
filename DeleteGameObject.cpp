@@ -35,11 +35,26 @@ void DeleteGameObject::ReadActionParameters()
 
 void DeleteGameObject::Execute()
 {
-	ReadActionParameters();
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
 
-	Grid * pGrid = pManager->GetGrid();
+	pOut->PrintMessage("Are You Sure You Need To Delete Game Object ? Click 1 - 0 | YES = 1 || NO == 0");
+	int i = pIn->GetInteger(pOut);
+	if (i == 1) {
+		ReadActionParameters();
 
-	pGrid->RemoveObjectFromCell(pos);
+		Grid * pGrid = pManager->GetGrid();
+
+		pGrid->RemoveObjectFromCell(pos);
+	}
+	else
+	{
+		pOut->PrintMessage("You Just Cancelled The Delete Game Object | Click To Continue...");
+		pIn->GetCellClicked();
+		pOut->ClearStatusBar();
+		return;
+	}
 
 
 
