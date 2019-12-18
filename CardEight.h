@@ -1,7 +1,6 @@
 #pragma once
 #include "card.h"
-class CardEight :
-	public Card
+class CardEight : public Card
 {
 	int prevent[4];
 public:

@@ -66,11 +66,12 @@ ActionType ApplicationManager::GetUserAction() const
 ////////////////////////////////////////////////////////////////////////////////////
 
 // Creates an action and executes it
-void ApplicationManager::ExecuteAction(ActionType ActType) 
+void ApplicationManager::ExecuteAction(ActionType  & ActType) 
 {
 	Action* pAct = NULL;
 
 	// According to Action Type, create the corresponding action object
+
 	switch (ActType)
 	{
 	case ADD_LADDER:
@@ -86,8 +87,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new AddCardAction(this);
 		break;
 
+	case Exit:
+		ActType = EXIT;
+		break;
+
+		
 	case EXIT:
 		break;
+
 
 	case Copy_Card:
 		// create an object of AddCardAction here

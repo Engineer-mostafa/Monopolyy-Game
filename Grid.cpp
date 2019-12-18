@@ -53,9 +53,8 @@ bool Grid::AddObjectToCell(GameObject * pNewObject)  // think if any validation 
 
 		if (IsOverlapping(pNewObject))
 			return false;
+		
 
-
-		// Set the game object of the Cell with the new game object
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(pNewObject);
 		return true; // indicating that addition is done
 	}
@@ -117,6 +116,11 @@ Output * Grid::GetOutput() const
 void Grid::SetClipboard(Card * pCard) // to be used in copy/cut
 {
 	// you may update slightly in implementation if you want (but without breaking responsibilities)
+	int i, j;
+	i = pCard->GetPosition().VCell();
+	j = pCard->GetPosition().HCell();
+	*pCard = *((Card*)(CellList[i][j])->GetGameObject());
+
 	Clipboard = pCard;
 }
 

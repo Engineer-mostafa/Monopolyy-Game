@@ -394,15 +394,18 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 
 void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCell) const
 {
-
 	///TODO: Validate the Cell Position (Must be Vertical Cells AND toCell below fromCell, otherwise, Do NOT draw)
 	if (GetCellStartY(fromCell) < GetCellStartY(toCell)) {
-		this->PrintMessage("end cell cannot be smaller than start cell");
+		this->PrintMessage("End Cell Cannot Be Smaller Than Start Cell | Click To Continue...");
+		this->CreateInput()->GetCellClicked();
+		this->ClearStatusBar();
 		return;
 	}
 
 	else if (GetCellStartX(fromCell) != GetCellStartX(toCell)) {
-		this->PrintMessage("end cell and start cell are not in the same column");
+		this->PrintMessage("End Cell And Start Cell Are Not In The Same Column | Click To Continue...");
+		this->CreateInput()->GetCellClicked();
+		this->ClearStatusBar();
 		return;
 	}
 	// Get the start X and Y coordinates of the upper left corner of the fromCell
@@ -458,13 +461,17 @@ void Output::DrawSnake(const CellPosition & fromCell, const CellPosition & toCel
 	//TODO: Validate the fromCell and toCell (Must be Vertical and toCell is below fromCell otherwise do NOT draw)
 	if ((fromCell.GetCellNum() - toCell.GetCellNum())<0)
 	{
-		this->PrintMessage("end cell cannot be smaller than start cell");
+		this->PrintMessage("Start Cell Cannot Be Smaller Than End Cell | Click To Continue...");
+		this->CreateInput()->GetCellClicked();
+		this->ClearStatusBar();
 		return;
 	}
 
 	else if ((fromCell.GetCellNum() - toCell.GetCellNum()) % 11 != 0)
 	{
-		this->PrintMessage("end cell and start cell are not in the same column");
+		this->PrintMessage("End Cell And Start Cell Are Not In The Same Column | Click To Continue...");
+		this->CreateInput()->GetCellClicked();
+		this->ClearStatusBar();
 		return;
 	}
 

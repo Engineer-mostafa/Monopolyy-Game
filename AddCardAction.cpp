@@ -62,13 +62,7 @@ void AddCardAction::Execute()
 
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-	Grid* pGrid = pManager->GetGrid();
-	Output* pOut = pGrid->GetOutput();
-	Input* pIn = pGrid->GetInput();
-
-	pOut->PrintMessage("Are You Sure You Need To Save Grid ? Click 1 - 0 | YES = 1 || NO == 0");
-	int i = pIn->GetInteger(pOut);
-	if (i == 1) {
+	
 
 		ReadActionParameters();
 		Card * pCard = NULL; // will point to the card object type
@@ -133,18 +127,5 @@ void AddCardAction::Execute()
 
 		}
 
-	}
-	// == Here are some guideline steps (numbered below) to implement this function ==
-	else
-	{
-		pOut->PrintMessage("You Just Cancelled The Add Card | Click To Continue...");
-		pIn->GetCellClicked();
-		pOut->ClearStatusBar();
-		return;
-	}
-	// 1- The first line of any Action Execution is to read its parameter first
-	// 2- Switch case on cardNumber data member and create the appropriate card object type
 	
-	// Here, the card is created and added to the GameObject of its Cell, so we finished executing the AddCardAction
-
 }

@@ -1,7 +1,5 @@
 #include "Player.h"
 #include"CardEight.h"
-#include"CardNine.h"
-
 #include "GameObject.h"
 
 Player::Player(Cell * pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum)
@@ -39,36 +37,18 @@ int Player::GetTurnCount() const
 {
 	return turnCount;
 }
-void Player::set_turncount(int x)
+
+int Player::GetjustRolledDiceNum() const
 {
-	turnCount = x;
+	return justRolledDiceNum;
 }
-
-void Player::SetJustRolledDice(int dice) {
-	justRolledDiceNum = dice;
-}
-int Player::get_curr_player_num()
-{
-	return playerNum;
-}
-int Player::get_stepcount()
-{
-	return stepCount;
-}
-
-
-
 
 // ====== Drawing Functions ======
 
 void Player::Draw(Output* pOut) const
 {
 	color playerColor = UI.PlayerColors[playerNum];
-	CellPosition postion = pCell->GetCellPosition();
-	pOut->DrawPlayer(postion, playerNum, playerColor);
-
-
-
+	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, playerColor);
 	///TODO: use the appropriate output function to draw the player with "playerColor"
 
 }
@@ -77,7 +57,6 @@ void Player::ClearDrawing(Output* pOut) const
 {
 	color cellColor = pCell->HasCard() ? UI.CellColor_HasCard : UI.CellColor_NoCard;
 	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, cellColor);
-
 
 	///TODO: use the appropriate output function to draw the player with "cellColor" (to clear it)
 
@@ -97,34 +76,44 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	// 1- Increment the turnCount because calling Move() means that the player has rolled the dice once
 	turnCount++;
 
-	// 2- Check the turnCount to know if the wallet recharge turn comes (recharge wallet instead of move)
-	//    If yes, recharge wallet and reset the turnCount and return from the function (do NOT move)
-	if (pCell->GetGameObject()) {
+	//card eight condition
+	if (pCell->GetGameObject())
 		if (dynamic_cast<CardEight*>(pCell->GetGameObject()) && turnCount != 3)
 		{
 			CardEight* p8 = (CardEight*)pCell->GetGameObject();
 			if (p8->IsPrevented(playerNum) == 1)
 				diceNumber = 0;
+
 		}
-	}
-		
-	
+
+
+	//card eight condition
+	if (pCell->GetGameObject())
+		if (dynamic_cast<CardEight*>(pCell->GetGameObject()) && turnCount == 3)
+		{
+			CardEight* p8 = (CardEight*)pCell->GetGameObject();
+			if (p8->IsPrevented(playerNum) == 1)
+				diceNumber = 0;
+			else
+				p8->IsPrevented(playerNum);
+
+		}
+	// 2- Check the turnCount to know if the wallet recharge turn comes (recharge wallet instead of move)
+	//    If yes, recharge wallet and reset the turnCount and return from the function (do NOT move)
+
 	if (turnCount == 3)
 	{
-		wallet += 10 * diceNumber;
+
+
+		wallet += (10 * diceNumber);
 		turnCount = 0;
+		return;
 	}
-
 	// 3- Set the justRolledDiceNum with the passed diceNumber
-	SetJustRolledDice(diceNumber);
-
+	justRolledDiceNum = diceNumber;
 	// 4- Get the player current cell position, say "pos", and add to it the diceNumber (update the position)
 	//    Using the appropriate function of CellPosition class to update "pos"
-	Player*p = pGrid->GetCurrentPlayer();
 	CellPosition pos = pCell->GetCellPosition();
-	ClearDrawing(pGrid->GetOutput());
-	pos.AddCellNum(diceNumber);
-	stepCount = pos.GetCellNum();
 	if ((pos.GetCellNum() + diceNumber) >= 99)
 	{
 		diceNumber = 99 - pos.GetCellNum();
@@ -132,6 +121,7 @@ void Player::Move(Grid * pGrid, int diceNumber)
 		Output* pOut = pGrid->GetOutput();
 		pOut->PrintMessage("Player Number " + to_string(playerNum) + " Has Won");
 	}
+	pos.AddCellNum(diceNumber);
 
 	// 5- Use pGrid->UpdatePlayerCell() func to Update player's cell POINTER (pCell) with the cell in the passed position, "pos" (the updated one)
 	//    the importance of this function is that it Updates the pCell pointer of the player and Draws it in the new position
@@ -149,8 +139,4 @@ void Player::AppendPlayerInfo(string & playersInfo) const
 	playersInfo += "P" + to_string(playerNum) + "(";
 	playersInfo += to_string(wallet) + ", ";
 	playersInfo += to_string(turnCount) + ")";
-}
-int Player::GetjustRolledDiceNum() const
-{
-	return justRolledDiceNum;
 }
