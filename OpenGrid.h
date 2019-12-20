@@ -3,6 +3,7 @@
 #include <fstream>
 class OpenGrid : public Action
 {
+	static bool isopen;
 public:
 	OpenGrid(ApplicationManager *pApp);
 	virtual void ReadActionParameters();

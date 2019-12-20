@@ -255,6 +255,11 @@ void Grid::PrintErrorMessage(string msg)
 	pOut->ClearStatusBar();
 }
 
+Card * Grid::CurrentCard(const CellPosition & position)
+{
+	return CellList[position.VCell()][position.HCell()]->HasCard();
+
+}
 void Grid::SaveAll(ofstream &OutFile, int type) {
 	int L, S, C;
 	L = 0;

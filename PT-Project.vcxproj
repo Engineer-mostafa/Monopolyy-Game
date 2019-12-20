@@ -189,6 +189,7 @@
     <ClCompile Include="CopyCardAction.cpp" />
     <ClCompile Include="CutCardAction.cpp" />
     <ClCompile Include="DeleteGameObject.cpp" />
+    <ClCompile Include="EditCardAction.cpp" />
     <ClCompile Include="EnterDiceAction.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="CopyCardAction.h" />
     <ClInclude Include="CutCardAction.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="EditCardAction.h" />
     <ClInclude Include="EnterDiceAction.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />

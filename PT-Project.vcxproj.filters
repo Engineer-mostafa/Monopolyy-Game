@@ -259,6 +259,9 @@
     <ClCompile Include="CardTwelve.cpp">
       <Filter>GameObjects\Cards</Filter>
     </ClCompile>
+    <ClCompile Include="EditCardAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -445,5 +448,6 @@
     <ClInclude Include="CardTwelve.h">
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
+    <ClInclude Include="EditCardAction.h" />
   </ItemGroup>
 </Project>

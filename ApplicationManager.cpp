@@ -5,6 +5,7 @@
 #include "AddSnakeAction.h"
 #include "AddCardAction.h"
 #include "CopyCardAction.h"
+#include "EditCardAction.h"
 #include "CutCardAction.h"
 #include "PasteCardAction.h"
 #include "RollDiceAction.h"
@@ -101,7 +102,10 @@ void ApplicationManager::ExecuteAction(ActionType  & ActType)
 		// create an object of AddCardAction here
 		pAct = new CopyCardAction(this);
 		break;
-
+	case Edit_Card:
+		// create an object of AddCardAction here
+		pAct = new EditCardAction(this);
+		break;
 	case Cut_Card:
 		// create an object of AddCardAction here
 		pAct = new CutCardAction(this);

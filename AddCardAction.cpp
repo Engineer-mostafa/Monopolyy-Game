@@ -102,7 +102,6 @@ void AddCardAction::Execute()
 	case 9:
 		pCard = new CardNine(cardPosition);
 		break;
-		// A- Add the remaining cases
 	case 10:
 		pCard = new CardTen(cardPosition);
 		break;

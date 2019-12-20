@@ -10,6 +10,7 @@ private:
 	static bool IsSaves;
 	static bool IsSaved;
 	static bool IsLoaded;
+
 public:
 	CardEleven(const CellPosition & pos);
 	CardEleven();

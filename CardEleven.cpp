@@ -12,10 +12,10 @@ bool CardEleven::created_before = false;
 int CardEleven::cardprice = 0;
 int CardEleven::fees = 0;
 
+
 void CardEleven::Save(ofstream &OutFile, int i, int Type) {
 	if (i == 0 && Type == 2)
 		OutFile << Num_Of_Cardes << endl;
-
 	if (Type == 2) {
 		OutFile << GetCardNumber() << " " << position.GetCellNum() << " ";
 		if (IsSaved) { OutFile << endl; }
@@ -27,9 +27,11 @@ void CardEleven::Save(ofstream &OutFile, int i, int Type) {
 		}
 
 	}
+
 	return;
 
 }
+
 void CardEleven::Load(ifstream &Infile, Grid *g, int r) {
 	cardNumber = r;
 	int cellnumber;
