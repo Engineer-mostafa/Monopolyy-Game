@@ -5,9 +5,14 @@ CardSix::CardSix(const CellPosition & pos) : Card(pos) // set the cell position 
 {
 	cardNumber = 6; // set the inherited cardNumber data member with the card number (1 here)
 }
-
+CardSix::CardSix()
+{
+	Num_Of_Cardes++;
+}
 CardSix::~CardSix(void)
 {
+	Num_Of_Cardes--;
+
 }
 
 void CardSix::ReadCardParameters(Grid * pGrid)
@@ -39,8 +44,5 @@ void CardSix::Save(ofstream &OutFile, int i, int Type) {
 	if (Type == 2)
 		OutFile << GetCardNumber() << "  " << position.GetCellNum() << endl;
 	return;
-
-}
-void CardSix::Load(ifstream &Infile) {
 
 }

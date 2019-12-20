@@ -47,13 +47,13 @@ bool Grid::AddObjectToCell(GameObject * pNewObject)  // think if any validation 
 	{
 		// Get the previous GameObject of the Cell
 		GameObject * pPrevObject = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
-		if (pPrevObject)  // the cell already contains a game object
+		if (pPrevObject && pNewObject != pPrevObject)  // the cell already contains a game object
 			return false; // do NOT add and return false
 
 
 		if (IsOverlapping(pNewObject))
 			return false;
-		
+
 
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(pNewObject);
 		return true; // indicating that addition is done
@@ -277,7 +277,22 @@ void Grid::SaveAll(ofstream &OutFile, int type) {
 			}
 		}
 	}
+	if (type == 0 && L == 0) {
+		Ladder *p = new Ladder;
+		p->Save(OutFile, 0, 10);
+
+	}
+	if (type == 1 && S == 0) {
+		Snake *s = new Snake;
+		s->Save(OutFile, 0, 100);
+
+	}
+	if (type == 2 && C == 0) {
+		Card * c = new Card;
+		c->Save(OutFile, 0, 2000);
+	}
 }
+
 Grid::~Grid()
 {
 	delete pIn;

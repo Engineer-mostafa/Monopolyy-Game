@@ -14,7 +14,9 @@ void Snake::Draw(Output* pOut) const
 {
 	pOut->DrawSnake(position, endCellPos);
 }
-
+Snake::Snake() {
+	Num_Of_Snakes++;
+}
 void Snake::Apply(Grid* pGrid, Player* pPlayer)
 {
 
@@ -50,7 +52,10 @@ bool Snake::IsOverlapping(GameObject * obj) {
 void Snake::Save(ofstream &OutFile, int i, int Type) {
 	if (i == 0 && Type == 1)
 		OutFile << Num_Of_Snakes << endl;
-
+	else if (i == 0 && Type == 100) {
+		OutFile << --Num_Of_Snakes << endl;
+		return;
+	}
 	if (Type == 1) {
 		OutFile << position.GetCellNum() << "  " << endCellPos.GetCellNum() << endl;
 	}
@@ -58,7 +63,16 @@ void Snake::Save(ofstream &OutFile, int i, int Type) {
 
 
 }
-void Snake::Load(ifstream &Infile) {
+void Snake::Load(ifstream &Infile, Grid *g, int r) {
+	int scellnumber, ecellnumber;
+	Infile >> scellnumber;
+	Infile >> ecellnumber;
+	CellPosition *st = new CellPosition;
+	CellPosition *en = new CellPosition;
+	position = st->GetCellPositionFromNum(scellnumber);
+	endCellPos = en->GetCellPositionFromNum(ecellnumber);
+	g->AddObjectToCell(this);
+	Draw(g->GetOutput());
 }
 Snake::~Snake()
 {

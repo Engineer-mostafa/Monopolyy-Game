@@ -71,7 +71,7 @@ public:
 	Snake * GetNextSnake(const CellPosition & position);  // Gets a Pointer to the first Snake after the passed "position"
 	int GetcurrPlayerNumber();
 
-															// ========= User Interface Functions =========
+	// ========= User Interface Functions =========
 
 	void UpdateInterface() const;		// It Updates the Grid according to the last state of the game
 										// In Design mode, it draws all cells/cards THEN all ladders/snakes THEN all players
@@ -85,7 +85,6 @@ public:
 	bool IsOverlapping(GameObject* newObj);
 
 	void SaveAll(ofstream &OutFile, int type);											//--------------------------------------Here
-
 	~Grid(); // A destructor for any needed deallcations
 
 };

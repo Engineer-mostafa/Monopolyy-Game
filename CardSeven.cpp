@@ -9,9 +9,15 @@ CardSeven::CardSeven(const CellPosition & pos) : Card(pos) // set the cell posit
 {
 	cardNumber = 7; // set the inherited cardNumber data member with the card number (1 here)
 }
+CardSeven::CardSeven()
+{
+	Num_Of_Cardes++;
+}
 
 CardSeven::~CardSeven(void)
 {
+	Num_Of_Cardes--;
+
 }
 
 void CardSeven::ReadCardParameters(Grid * pGrid)
@@ -60,10 +66,7 @@ void CardSeven::Save(ofstream &OutFile, int i, int Type) {
 		OutFile << Num_Of_Cardes << endl;
 
 	if (Type == 2)
-		OutFile << GetCardNumber() << "  " << position.GetCellNum()  << endl;
+		OutFile << GetCardNumber() << "  " << position.GetCellNum() << endl;
 	return;
-
-}
-void CardSeven::Load(ifstream &Infile) {
 
 }

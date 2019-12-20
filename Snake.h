@@ -11,7 +11,7 @@ class Snake : public GameObject // inherited from GameObject
 public:
 
 	Snake(const CellPosition & startCellPos, const CellPosition & endCellPos); // A constructor for initialization
-
+	Snake();
 	virtual void Draw(Output* pOut) const; // Draws a snake from its start cell to its end cell
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applys the effect of the snake by moving player to snake's end cell
@@ -19,7 +19,7 @@ public:
 	CellPosition GetEndPosition() const; // A getter for the endCellPos data member
 	virtual bool IsOverlapping(GameObject * obj);
 	virtual void Save(ofstream &OutFile, int i, int Type);	// Saves the GameObject parameters to the file
-	virtual void Load(ifstream &Infile);
+	virtual void Load(ifstream &Infile, Grid *, int);
 	virtual ~Snake(); // Virtual destructor
 
 };

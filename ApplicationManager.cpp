@@ -10,9 +10,10 @@
 #include "RollDiceAction.h"
 #include"DeleteGameObject.h"
 #include "SaveGridAction.h"
+#include "OpenGrid.h"
 #include "Input_Dice_Action.h"
-#include "New_game.h"
 # include"to_design_mode.h"
+#include "NewGAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -66,7 +67,7 @@ ActionType ApplicationManager::GetUserAction() const
 ////////////////////////////////////////////////////////////////////////////////////
 
 // Creates an action and executes it
-void ApplicationManager::ExecuteAction(ActionType  & ActType) 
+void ApplicationManager::ExecuteAction(ActionType  & ActType)
 {
 	Action* pAct = NULL;
 
@@ -78,7 +79,7 @@ void ApplicationManager::ExecuteAction(ActionType  & ActType)
 		pAct = new AddLadderAction(this);
 		break;
 
-		case ADD_SNAKE:
+	case ADD_SNAKE:
 		pAct = new AddSnakeAction(this);
 		break;
 
@@ -91,7 +92,7 @@ void ApplicationManager::ExecuteAction(ActionType  & ActType)
 		ActType = EXIT;
 		break;
 
-		
+
 	case EXIT:
 		break;
 
@@ -128,15 +129,17 @@ void ApplicationManager::ExecuteAction(ActionType  & ActType)
 		pAct = new Input_Dice_Action(this);
 		break;
 	case New_Game:
-		pAct = new New_game(this);
+		pAct = new NewGAction(this);
 		break;
-
-	case Save_Grid :
+	case Open_Grid:
+		pAct = new OpenGrid(this);
+		break;
+	case Save_Grid:
 		pAct = new SaveGridAction(this);
 		break;
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode
 	case Delete_Game_Object:
-		pAct= new DeleteGameObject(this);
+		pAct = new DeleteGameObject(this);
 		break;
 
 
@@ -145,7 +148,7 @@ void ApplicationManager::ExecuteAction(ActionType  & ActType)
 	}
 
 	// Execute the created action
-	if(pAct != NULL)
+	if (pAct != NULL)
 	{
 		pAct->Execute(); // Execute
 		delete pAct;	 // Action is not needed any more after executing ==> delete it

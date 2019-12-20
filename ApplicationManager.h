@@ -22,7 +22,7 @@ public:
 	ApplicationManager();  // Constructor: where the Input, Ouput and Grid are allocated
 	~ApplicationManager(); // Destructor for needed deallocations
 
-	// ========== Interface Management Functions ==========
+						   // ========== Interface Management Functions ==========
 
 	Grid * GetGrid() const;    // Returns pointer to the Grid
 	Output* get_Pout() const;
@@ -33,7 +33,7 @@ public:
 
 	ActionType GetUserAction() const; // Reads the input command from the user and returns the corresponding action type
 
-	void ExecuteAction(ActionType &) ;  // Creates an action of the passed actionType and executes it
+	void ExecuteAction(ActionType &);  // Creates an action of the passed actionType and executes it
 
 };
 

@@ -14,13 +14,13 @@ protected:
 	CellPosition position; // The current cell position of the GameObject
 
 public:
-
+	GameObject();
 	GameObject(const CellPosition & pos); // Constructor for initializing data members
 
 	CellPosition GetPosition() const;     // A Getter for position
 	void SetPosition(CellPosition pos);  // A Setter for position
 
-										  // ============ Virtual Functions ============
+										 // ============ Virtual Functions ============
 
 	virtual void Draw(Output* pOut) const = 0;	 // Draws the game object in the window in his position cell 
 												 // (drawing depends on GameObject Type, so virtual)
@@ -33,9 +33,8 @@ public:
 														   // They should be overridden by each inherited class
 
 														   // Decide the parameters that you should pass to each function	
-
 	virtual void Save(ofstream &OutFile, int i, int Type) = 0;	// Saves the GameObject parameters to the file
-	virtual void Load(ifstream &Infile) = 0;	// Loads and Reads the GameObject parameters from the file
+	virtual void Load(ifstream &Infile, Grid *, int) = 0;	// Loads and Reads the GameObject parameters from the file
 
 	virtual bool IsOverlapping(GameObject * obj) = 0;
 	virtual ~GameObject(); // Virtual destructor

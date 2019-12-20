@@ -205,9 +205,6 @@
     <ClCompile Include="to_design_mode.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="New_game.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="Input_Dice_Action.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -237,6 +234,15 @@
     </ClCompile>
     <ClCompile Include="CardThree.cpp">
       <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="EnterDiceAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGrid.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -303,9 +309,6 @@
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="ApplicationManager.h">
-      <Filter>ApplicationManager</Filter>
-    </ClInclude>
     <ClInclude Include="Action.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -367,9 +370,6 @@
     <ClInclude Include="to_design_mode.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="New_game.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="Input_Dice_Action.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -402,6 +402,18 @@
     </ClInclude>
     <ClInclude Include="CardSix.h">
       <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationManager.h">
+      <Filter>ApplicationManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterDiceAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGrid.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

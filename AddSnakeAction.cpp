@@ -42,38 +42,38 @@ void AddSnakeAction::ReadActionParameters()
 // Execute the action
 void AddSnakeAction::Execute()
 {
-	
-		ReadActionParameters();
-		// Create a Ladder object with the parameters read from the user
-		Snake * pSnake = new Snake(startPos, endPos);
-		Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
 
-		// Add the card object to the GameObject of its Cell:
-		Input* pIn = pGrid->GetInput();
+	ReadActionParameters();
+	// Create a Ladder object with the parameters read from the user
+	Snake * pSnake = new Snake(startPos, endPos);
+	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
 
-		bool added = pGrid->AddObjectToCell(pSnake);
-		if (startPos.HCell() != endPos.HCell())
-		{
-			pGrid->AddObjectToCell(pSnake);
-			pGrid->PrintErrorMessage("Error: End Cell And Start Cell Are Not In The Same Column | Click To Continue...");
-			pIn->GetCellClicked();
-			pGrid->RemoveObjectFromCell(startPos);
-		}
-		if (startPos.GetCellNum() < endPos.GetCellNum()) {
-			pGrid->AddObjectToCell(pSnake);
-			pGrid->PrintErrorMessage("Error: Start Cell Cannot Be Smaller Than End Cell | Click To Continue...");
-			pIn->GetCellClicked();
-			pGrid->RemoveObjectFromCell(startPos);
-		}
+										// Add the card object to the GameObject of its Cell:
+	Input* pIn = pGrid->GetInput();
 
-		// if the GameObject cannot be added
-		if (!added)
-		{
-			// Print an appropriate message
-			pGrid->PrintErrorMessage("Error: Cell already has an object Or You Clicked Invalid Cell! Click to continue ...");
-			pGrid->RemoveObjectFromCell(startPos);
-		}
-		// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
-	
-	
+	bool added = pGrid->AddObjectToCell(pSnake);
+	if (startPos.HCell() != endPos.HCell())
+	{
+		pGrid->AddObjectToCell(pSnake);
+		pGrid->PrintErrorMessage("Error: End Cell And Start Cell Are Not In The Same Column | Click To Continue...");
+		pIn->GetCellClicked();
+		pGrid->RemoveObjectFromCell(startPos);
+	}
+	if (startPos.GetCellNum() < endPos.GetCellNum()) {
+		pGrid->AddObjectToCell(pSnake);
+		pGrid->PrintErrorMessage("Error: Start Cell Cannot Be Smaller Than End Cell | Click To Continue...");
+		pIn->GetCellClicked();
+		pGrid->RemoveObjectFromCell(startPos);
+	}
+
+	// if the GameObject cannot be added
+	if (!added)
+	{
+		// Print an appropriate message
+		pGrid->PrintErrorMessage("Error: Cell already has an object Or You Clicked Invalid Cell! Click to continue ...");
+		pGrid->RemoveObjectFromCell(startPos);
+	}
+	// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
+
+
 }

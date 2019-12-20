@@ -68,11 +68,17 @@ void CopyCardAction::Execute()
 			if ((pGrid->IsOverlapping(pCard)))
 				pGrid->SetClipboard(pCard);
 			else
-				pOut->PrintMessage("Error: There is No Card In This Cell");
+				pOut->PrintMessage("Error: There is No Card In This Cell | Click To Continue");
+			pGrid->GetInput()->GetCellClicked();
+			pGrid->GetOutput()->ClearStatusBar();
 		}
 
 		else
-			pOut->PrintMessage("Error: There is No Card In This Cell");
+			pOut->PrintMessage("Error: There is No Card In This Cell | Click To Continue");
+		pGrid->GetInput()->GetCellClicked();
+		pGrid->GetOutput()->ClearStatusBar();
+
+
 	}
 	else
 	{

@@ -184,12 +184,14 @@
     <ClCompile Include="CopyCardAction.cpp" />
     <ClCompile Include="CutCardAction.cpp" />
     <ClCompile Include="DeleteGameObject.cpp" />
+    <ClCompile Include="EnterDiceAction.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Input_Dice_Action.cpp" />
     <ClCompile Include="Ladder.cpp" />
-    <ClCompile Include="New_game.cpp" />
+    <ClCompile Include="NewGAction.cpp" />
+    <ClCompile Include="OpenGrid.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="PasteCardAction.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -239,6 +241,7 @@
     <ClInclude Include="CopyCardAction.h" />
     <ClInclude Include="CutCardAction.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="EnterDiceAction.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="DeleteGameObject.h" />
@@ -246,7 +249,8 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Input_Dice_Action.h" />
     <ClInclude Include="Ladder.h" />
-    <ClInclude Include="New_game.h" />
+    <ClInclude Include="NewGAction.h" />
+    <ClInclude Include="OpenGrid.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="PasteCardAction.h" />
     <ClInclude Include="Player.h" />

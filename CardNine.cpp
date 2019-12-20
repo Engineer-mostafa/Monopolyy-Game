@@ -6,6 +6,11 @@ CardNine::CardNine(const CellPosition & pos) : Card(pos)
 {
 	cardNumber = 9;
 }
+CardNine::CardNine()
+{
+	Num_Of_Cardes++;
+
+}
 void CardNine::ReadCardParameters(Grid * pGrid) {
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
@@ -65,9 +70,18 @@ void CardNine::Save(ofstream &OutFile, int i, int Type) {
 	return;
 
 }
-void  CardNine::Load(ifstream &Infile) {
-
+void  CardNine::Load(ifstream &Infile, Grid *g, int r) {
+	cardNumber = r;
+	int cellnumber;
+	CellPosition *c = new CellPosition;
+	Infile >> cellnumber;
+	position = c->GetCellPositionFromNum(cellnumber);
+	Infile >> sCellNumber;
+	g->AddObjectToCell(this);
+	Draw(g->GetOutput());
 }
 CardNine::~CardNine()
 {
+	Num_Of_Cardes--;
+
 }

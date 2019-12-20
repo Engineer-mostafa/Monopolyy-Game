@@ -8,9 +8,14 @@ CardThree::CardThree(const CellPosition & pos) : Card(pos) // set the cell posit
 {
 	cardNumber = 3; // set the inherited cardNumber data member with the card number (3 here)
 }
-
+CardThree::CardThree()
+{
+	Num_Of_Cardes++;
+}
 CardThree::~CardThree(void)
 {
+	Num_Of_Cardes--;
+
 }
 
 void CardThree::ReadCardParameters(Grid * pGrid)
@@ -52,8 +57,5 @@ void CardThree::Save(ofstream &OutFile, int i, int Type) {
 	if (Type == 2)
 		OutFile << GetCardNumber() << "  " << position.GetCellNum() << endl;
 	return;
-
-}
-void CardThree::Load(ifstream &Infile) {
 
 }

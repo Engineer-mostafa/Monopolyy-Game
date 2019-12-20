@@ -7,8 +7,14 @@ CardFive::CardFive(const CellPosition & pos) : Card(pos) // set the cell positio
 
 CardFive::~CardFive(void)
 {
-}
+	Num_Of_Cardes--;
 
+}
+CardFive::CardFive()
+{
+	Num_Of_Cardes++;
+
+}
 void CardFive::ReadCardParameters(Grid * pGrid)
 {
 
@@ -53,6 +59,4 @@ void CardFive::Save(ofstream &OutFile, int i, int Type) {
 
 }
 
-void CardFive::Load(ifstream &Infile) {
 
-}

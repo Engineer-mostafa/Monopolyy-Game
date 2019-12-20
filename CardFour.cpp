@@ -10,9 +10,15 @@ CardFour::CardFour(const CellPosition & pos) : Card(pos) // set the cell positio
 {
 	cardNumber = 4; // set the inherited cardNumber data member with the card number (3 here)
 }
+CardFour::CardFour()
+{
+	Num_Of_Cardes++;
 
+}
 CardFour::~CardFour(void)
 {
+	Num_Of_Cardes--;
+
 }
 
 void CardFour::ReadCardParameters(Grid * pGrid)
@@ -47,7 +53,7 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 	}
 
 }
-void CardFour ::Save(ofstream &OutFile, int i, int Type) {
+void CardFour::Save(ofstream &OutFile, int i, int Type) {
 	if (i == 0 && Type == 2)
 		OutFile << Num_Of_Cardes << endl;
 
@@ -56,6 +62,4 @@ void CardFour ::Save(ofstream &OutFile, int i, int Type) {
 	return;
 
 }
-void  CardFour::Load(ifstream &Infile) {
 
-}

@@ -6,6 +6,10 @@ CardTwo::CardTwo(const CellPosition & pos) : Card(pos)
 {
 	cardNumber = 2;
 }
+CardTwo::CardTwo()
+{
+	Num_Of_Cardes++;
+}
 void CardTwo::ReadCardParameters(Grid * pGrid) {
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
@@ -23,6 +27,7 @@ void CardTwo::Apply(Grid* pGrid, Player* pPlayer) {
 
 CardTwo::~CardTwo()
 {
+	Num_Of_Cardes--;
 }
 void CardTwo::Save(ofstream &OutFile, int i, int Type) {
 	if (i == 0 && Type == 2)
@@ -33,6 +38,14 @@ void CardTwo::Save(ofstream &OutFile, int i, int Type) {
 	return;
 
 }
-void CardTwo::Load(ifstream &Infile) {
+void CardTwo::Load(ifstream &Infile, Grid *g, int r) {
+	cardNumber = r;
+	int cellnumber;
+	CellPosition *c = new CellPosition;
+	Infile >> cellnumber;
+	Infile >> vofincreament;
+	position = c->GetCellPositionFromNum(cellnumber);
 
+	g->AddObjectToCell(this);
+	Draw(g->GetOutput());
 }

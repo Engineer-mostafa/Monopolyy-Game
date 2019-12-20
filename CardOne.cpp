@@ -5,9 +5,14 @@ CardOne::CardOne(const CellPosition & pos) : Card(pos) // set the cell position 
 {
 	cardNumber = 1; // set the inherited cardNumber data member with the card number (1 here)
 }
-
+CardOne::CardOne()
+{
+	Num_Of_Cardes++;
+}
 CardOne::~CardOne(void)
 {
+	Num_Of_Cardes--;
+
 }
 
 void CardOne::ReadCardParameters(Grid * pGrid)
@@ -29,7 +34,7 @@ void CardOne::ReadCardParameters(Grid * pGrid)
 	//    Don't forget to first print to a descriptive message to the user like:"New CardOne: Enter its wallet amount ..."
 	pOut->PrintMessage("New CardOne: Enter its wallet amount ...");
 	int w = pIn->GetInteger(pOut);
-	walletAmount = (w < 0 ? 0 : w) ;
+	walletAmount = (w < 0 ? 0 : w);
 
 	// [ Note ]:
 	// In CardOne, the only parameter of CardOne is the "walletAmount" value to decrease from player
@@ -65,6 +70,13 @@ void CardOne::Save(ofstream &OutFile, int i, int Type) {
 
 }
 
-void CardOne::Load(ifstream &Infile) {
-
+void CardOne::Load(ifstream &Infile, Grid *g, int r) {
+	cardNumber = r;
+	int cellnumber;
+	CellPosition *c = new CellPosition;
+	Infile >> cellnumber;
+	position = c->GetCellPositionFromNum(cellnumber);
+	Infile >> walletAmount;
+	g->AddObjectToCell(this);
+	Draw(g->GetOutput());
 }

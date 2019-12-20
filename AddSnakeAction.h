@@ -7,10 +7,10 @@ class AddSnakeAction : public Action
 	// Always add action parameters as private data members
 
 	// [Action Parameters]
-	CellPosition startPos;
-	CellPosition endPos;
+	CellPosition startPos; // 1- The start position of the ladder
+	CellPosition endPos;   // 2- The end position of the ladder
 
-	// Note: These parameters should be read in ReadActionParameters()
+						   // Note: These parameters should be read in ReadActionParameters()
 
 public:
 

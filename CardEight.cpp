@@ -13,9 +13,15 @@ CardEight::CardEight(const CellPosition & pos) : Card(pos) // set the cell posit
 	prevent[2] = 1;
 	prevent[3] = 1;
 }
+CardEight::CardEight()
+{
+	Num_Of_Cardes++;
+}
 
 CardEight::~CardEight(void)
 {
+	Num_Of_Cardes--;
+
 }
 
 void CardEight::ReadCardParameters(Grid * pGrid)
@@ -44,6 +50,7 @@ void CardEight::Save(ofstream &OutFile, int i, int Type) {
 	if (i == 0 && Type == 2)
 		OutFile << Num_Of_Cardes << endl;
 
+
 	if (Type == 2)
 		OutFile << GetCardNumber() << "  " << position.GetCellNum() << endl;
 	return;
@@ -56,8 +63,5 @@ int CardEight::IsPrevented(int playernum)
 
 	if (prevent[playernum] == 0)
 		return prevent[playernum]++;
-
-}
-void CardEight::Load(ifstream &Infile) {
 
 }

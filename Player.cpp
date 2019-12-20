@@ -133,10 +133,16 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	if (pos.GetCellNum()>99)
 		pGrid->SetEndGame(true);
 }
-
+void Player::set_turncount(int x)
+{
+	turnCount = x;
+}
 void Player::AppendPlayerInfo(string & playersInfo) const
 {
 	playersInfo += "P" + to_string(playerNum) + "(";
 	playersInfo += to_string(wallet) + ", ";
 	playersInfo += to_string(turnCount) + ")";
+}
+int Player::get_curr_player_num() {
+	return playerNum;
 }

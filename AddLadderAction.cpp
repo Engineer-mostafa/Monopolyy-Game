@@ -49,9 +49,9 @@ void AddLadderAction::Execute()
 	Ladder * pLadder = new Ladder(startPos, endPos);
 
 	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-	
+
 	bool added = pGrid->AddObjectToCell(pLadder);
-	
+
 	Input* pIn = pGrid->GetInput();
 	if (startPos.HCell() != endPos.HCell())
 	{
@@ -79,6 +79,6 @@ void AddLadderAction::Execute()
 
 }
 
-	
+
 
 

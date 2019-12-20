@@ -10,14 +10,7 @@ SaveGridAction::SaveGridAction(ApplicationManager *pApp) : Action(pApp)
 }
 void SaveGridAction::ReadActionParameters()
 {
-	// Get a Pointer to the Input / Output Interfaces
-	Grid* pGrid = pManager->GetGrid();
-	Output* pOut = pGrid->GetOutput();
-	pOut->PrintMessage("You Will Save The Grid");
 
-
-	// Clear messages
-	pOut->ClearStatusBar();
 }
 
 void SaveGridAction::Execute() {
@@ -35,7 +28,7 @@ void SaveGridAction::Execute() {
 		string x = pIn->GetSrting(pOut);
 		ofstream Out;
 
-		Out.open(x + ".txt");
+		Out.open(x + ".txt", ios::out);
 
 
 		pGrid->SaveAll(Out, 0);
@@ -57,9 +50,9 @@ void SaveGridAction::Execute() {
 		pOut->ClearStatusBar();
 		return;
 	}
-		
 
-	
+
+
 }
 
 SaveGridAction::~SaveGridAction()

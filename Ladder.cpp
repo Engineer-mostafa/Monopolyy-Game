@@ -9,7 +9,10 @@ Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPo
 
 }
 
-
+Ladder::Ladder()
+{
+	Num_Of_Laders++;
+}
 
 void Ladder::Draw(Output* pOut) const
 {
@@ -62,12 +65,26 @@ bool Ladder::IsOverlapping(GameObject * obj) {
 void Ladder::Save(ofstream &OutFile, int i, int Type) {
 	if (i == 0 && Type == 0)
 		OutFile << Num_Of_Laders << endl;
+	else if (i == 0 && Type == 10) {
+		OutFile << --Num_Of_Laders << endl;
+		return;
+	}
 
 	if (Type == 0)
 		OutFile << position.GetCellNum() << "  " << endCellPos.GetCellNum() << endl;
 	return;
 }
-void Ladder::Load(ifstream &Infile) {
+void Ladder::Load(ifstream &Infile, Grid *g, int r) {
+	int scellnumber, ecellnumber;
+	Infile >> scellnumber;
+	Infile >> ecellnumber;
+	CellPosition *st = new CellPosition;
+	CellPosition *en = new CellPosition;
+	position = st->GetCellPositionFromNum(scellnumber);
+	endCellPos = en->GetCellPositionFromNum(ecellnumber);
+	Ladder(position, endCellPos);
+	g->AddObjectToCell(this);
+	Draw(g->GetOutput());
 }
 Ladder::~Ladder()
 {

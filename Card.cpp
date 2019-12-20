@@ -5,6 +5,10 @@ Card::Card(const CellPosition & pos) : GameObject(pos) // sets the cell position
 {
 	Num_Of_Cardes++;
 }
+Card::Card()
+{
+	Num_Of_Cardes++;
+}
 
 void Card::SetCardNumber(int cnum)
 {
@@ -50,14 +54,25 @@ bool Card::IsOverlapping(GameObject * obj) {
 }
 
 void Card::Save(ofstream &OutFile, int i, int Type) {
+	if (i == 0 && Type == 2000) {
+		OutFile << --Num_Of_Cardes << endl;
+	}
 }
-void Card::Load(ifstream &Infile) {
+void Card::Load(ifstream &Infile, Grid *g, int r)
+{
+	cardNumber = r;
+	int cellnumber;
+	CellPosition *c = new CellPosition;
+	Infile >> cellnumber;
+	position = c->GetCellPositionFromNum(cellnumber);
+	Card(position);
+	g->AddObjectToCell(this);
+	Draw(g->GetOutput());
 
 }
 
 Card::~Card()
 {
-	--Num_Of_Cardes;
 }
 
 
