@@ -50,7 +50,7 @@ void CutCardAction::Execute()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
-	pOut->PrintMessage("Are You Sure You Need To Cut Card ? Click 1 - 0 | YES = 1 || NO == 0");
+	pOut->PrintMessage("Are You Sure You Want To Cut Card ? Click 1 - 0 | YES = 1 || NO == 0");
 	int i = pIn->GetInteger(pOut);
 	if (i == 1) {
 		// 1- The first line of any Action Execution is to read its parameter first

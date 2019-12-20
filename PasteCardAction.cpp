@@ -48,7 +48,7 @@ void PasteCardAction::Execute()
 
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
-	pOut->PrintMessage("Are You Sure You Need To Past Card ? Click 1 - 0 | YES = 1 || NO == 0");
+	pOut->PrintMessage("Are You Sure You Want To Past Card ? Click 1 - 0 | YES = 1 || NO == 0");
 	int i = pIn->GetInteger(pOut);
 	if (i == 1) {
 		// 1- The first line of any Action Execution is to read its parameter first

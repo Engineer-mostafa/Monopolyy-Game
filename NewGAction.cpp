@@ -28,7 +28,7 @@ void NewGAction::Execute()
 
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
-	pOut->PrintMessage("Are You Sure You Need Create New Game ? Click 1 - 0 | YES = 1 || NO == 0");
+	pOut->PrintMessage("Are You Sure You Want Create New Game ? Click 1 - 0 | YES = 1 || NO == 0");
 	int i = pIn->GetInteger(pOut);
 	if (i == 1) {
 		// no need for calling ReadActionParameters()

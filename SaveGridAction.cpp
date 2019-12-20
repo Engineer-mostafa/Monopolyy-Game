@@ -20,7 +20,7 @@ void SaveGridAction::Execute() {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("Are You Sure You Need To Save Grid ? Click 1 - 0 | YES = 1 || NO == 0");
+	pOut->PrintMessage("Are You Sure You Want To Save Grid ? Click 1 - 0 | YES = 1 || NO == 0");
 	int i = pIn->GetInteger(pOut);
 	if (i == 1) {
 		pOut->PrintMessage("Please Enter Your Grid Name");

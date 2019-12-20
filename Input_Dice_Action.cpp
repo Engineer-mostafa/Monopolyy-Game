@@ -17,6 +17,18 @@ Input_Dice_Action::~Input_Dice_Action()
 
 }
 
+void Input_Dice_Action::ReadActionParameters()
+{
+	Output* pout = (pManager->GetGrid())->GetOutput();
+	pout->ClearStatusBar();
+	pout->PrintMessage("Entre Your Dice Value : ");
+	Input* Pin = (pManager->GetGrid())->GetInput();
+	num = Pin->GetInteger(pout);
+	pout->ClearStatusBar();
+	Player*p = (pManager->GetGrid())->GetCurrentPlayer();
+	pos = ((p->GetCell())->GetCellPosition());
+
+}
 void Input_Dice_Action::Execute()
 {
 	ReadActionParameters();
@@ -29,11 +41,13 @@ void Input_Dice_Action::Execute()
 
 			Player* p = pg->GetCurrentPlayer();
 			pg->UpdatePlayerCell(p, pos);
-			pout->PrintMessage("Entre Your Dice Value : ");
+			pout->PrintMessage("Sorry! Remember That You Should Enter Value Between 1-6 | So Now Enter Valid Number...");
 			Input *Pin = pg->GetInput();
 			num = Pin->GetInteger(pout);
-			if (num<6)
+			if (num < 6) {
+				pout->ClearStatusBar();
 				break;
+			}
 
 		}
 	}
@@ -48,15 +62,5 @@ void Input_Dice_Action::Execute()
 
 
 }
-void Input_Dice_Action::ReadActionParameters()
-{
-	Output* pout = (pManager->GetGrid())->GetOutput();
-	pout->ClearStatusBar();
-	pout->PrintMessage("Entre Your Dice Value : ");
-	Input* Pin = (pManager->GetGrid())->GetInput();
-	num = Pin->GetInteger(pout);
-	Player*p = (pManager->GetGrid())->GetCurrentPlayer();
-	pos = ((p->GetCell())->GetCellPosition());
 
-}
 

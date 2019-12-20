@@ -16,6 +16,7 @@ class Player
 	int turnCount;         // a counter that starts with 0, is incremented with each dice roll
 						   // and reset again when reached 3
 						   // it is used to indicate when to move and when to add to your wallet
+	bool card10_owner, card11_owner, card12_owner, card13_owner, card14_owner;
 
 public:
 
@@ -30,11 +31,24 @@ public:
 	int GetWallet() const;			// a getter for the wallet
 
 	int GetTurnCount() const;		// A getter for the turnCount
-	int GetjustRolledDiceNum() const; // A getter for the justRolledDiceNum
-
-	void set_turncount(int);           // A setter for the turn count
 	int get_curr_player_num();
 	int get_stepcount();
+
+	void set_card10_owner(bool);
+	bool get_card10_owner();
+	void set_card11_owner(bool);
+	bool get_card11_owner();
+	void set_card12_owner(bool);
+	bool get_card12_owner();
+	void set_card13_owner(bool);
+	bool get_card13_owner();
+	void set_card14_owner(bool);
+	bool get_card14_owner();
+
+
+	int GetjustRolledDiceNum() const; // A getter for the justRolledDiceNum
+
+	void set_turncount(int);           // A setter for the turn count	int get_stepcount();
 
 	///TODO: You can add setters and getters for data members here (if needed)
 	void SetJustRolledDice(int dice);

@@ -6,6 +6,7 @@ Player::Player(Cell * pCell, int playerNum) : stepCount(0), wallet(100), playerN
 {
 	this->pCell = pCell;
 	this->turnCount = 0;
+	card10_owner = false;   card11_owner = false;   card12_owner = false;   card13_owner = false;   card14_owner = false;
 
 	// Make all the needed initialization or validations
 }
@@ -32,7 +33,14 @@ int Player::GetWallet() const
 {
 	return wallet;
 }
-
+void Player::set_turncount(int x)
+{
+	turnCount = x;
+}
+int Player::get_stepcount()
+{
+	return stepCount;
+}
 int Player::GetTurnCount() const
 {
 	return turnCount;
@@ -98,9 +106,7 @@ void Player::Move(Grid * pGrid, int diceNumber)
 				p8->IsPrevented(playerNum);
 
 		}
-	// 2- Check the turnCount to know if the wallet recharge turn comes (recharge wallet instead of move)
-	//    If yes, recharge wallet and reset the turnCount and return from the function (do NOT move)
-
+	
 	if (turnCount == 3)
 	{
 
@@ -109,11 +115,11 @@ void Player::Move(Grid * pGrid, int diceNumber)
 		turnCount = 0;
 		return;
 	}
-	// 3- Set the justRolledDiceNum with the passed diceNumber
+
 	justRolledDiceNum = diceNumber;
-	// 4- Get the player current cell position, say "pos", and add to it the diceNumber (update the position)
-	//    Using the appropriate function of CellPosition class to update "pos"
 	CellPosition pos = pCell->GetCellPosition();
+	ClearDrawing(pGrid->GetOutput());
+
 	if ((pos.GetCellNum() + diceNumber) >= 99)
 	{
 		diceNumber = 99 - pos.GetCellNum();
@@ -128,21 +134,66 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	pGrid->UpdatePlayerCell(this, pos);
 	// 6- Apply() the game object of the reached cell (if any)
 	if (pCell->GetGameObject())
-		(pCell->GetGameObject())->Apply(pGrid, this);
+		(pCell->GetGameObject())->Apply(pGrid,this);
 	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
 	if (pos.GetCellNum()>99)
 		pGrid->SetEndGame(true);
 }
-void Player::set_turncount(int x)
-{
-	turnCount = x;
-}
+
+
+
+
+
 void Player::AppendPlayerInfo(string & playersInfo) const
 {
 	playersInfo += "P" + to_string(playerNum) + "(";
 	playersInfo += to_string(wallet) + ", ";
 	playersInfo += to_string(turnCount) + ")";
 }
-int Player::get_curr_player_num() {
+
+int Player::get_curr_player_num()
+{
 	return playerNum;
 }
+// ----------------------------getters and setters for card owners from (10->14)
+void Player::set_card10_owner(bool owner)
+{
+	card10_owner = owner;
+}
+bool Player::get_card10_owner()
+{
+	return card10_owner;
+}
+void Player::set_card11_owner(bool owner)
+{
+	card11_owner = owner;
+}
+bool Player::get_card11_owner()
+{
+	return card11_owner;
+}
+void Player::set_card12_owner(bool owner)
+{
+	card12_owner = owner;
+}
+bool Player::get_card12_owner()
+{
+	return card12_owner;
+}
+void Player::set_card13_owner(bool owner)
+{
+	card13_owner = owner;
+}
+bool Player::get_card13_owner()
+{
+	return card13_owner;
+}
+void Player::set_card14_owner(bool owner)
+{
+	card14_owner = owner;
+}
+bool Player::get_card14_owner()
+{
+	return card14_owner;
+}
+

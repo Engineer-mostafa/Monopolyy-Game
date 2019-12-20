@@ -14,6 +14,11 @@
 #include "CardSeven.h"
 #include"CardEight.h"
 #include "CardNine.h"
+#include"CardTen.h"
+#include"CardEleven.h"
+#include"CardTwelve.h"
+#include"CardThirteen.h"
+#include"CardFourteen.h"
 OpenGrid::OpenGrid(ApplicationManager *pApp) : Action(pApp)
 {
 
@@ -27,7 +32,7 @@ void OpenGrid::Execute() {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("Are You Sure You Need To Open Grid ? Click 1 - 0 | YES = 1 || NO == 0");
+	pOut->PrintMessage("Are You Sure You Want To Open Grid ? Click 1 - 0 | YES = 1 || NO == 0");
 	int i = pIn->GetInteger(pOut);
 	if (i == 1) {
 
@@ -93,6 +98,26 @@ void OpenGrid::Execute() {
 							pCard = new CardNine;
 							pCard->Load(In, pGrid, r);
 							break;
+						case 10:
+							pCard = new CardTen;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 11:
+							pCard = new CardEleven;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 12:
+							pCard = new CardTwelve;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 13:
+							pCard = new CardThirteen;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 14:
+							pCard = new CardFourteen;
+							pCard->Load(In, pGrid, r);
+							break;
 						}
 					}
 				}
@@ -145,6 +170,26 @@ void OpenGrid::Execute() {
 							break;
 						case 9:
 							pCard = new CardNine;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 10:
+							pCard = new CardTen;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 11:
+							pCard = new CardEleven;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 12:
+							pCard = new CardTwelve;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 13:
+							pCard = new CardThirteen;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 14:
+							pCard = new CardFourteen;
 							pCard->Load(In, pGrid, r);
 							break;
 						}
@@ -210,6 +255,27 @@ void OpenGrid::Execute() {
 							pCard = new CardNine;
 							pCard->Load(In, pGrid, r);
 							break;
+						case 10:
+							pCard = new CardTen;
+							pCard->Load(In, pGrid, r);
+
+							break;
+						case 11:
+							pCard = new CardEleven;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 12:
+							pCard = new CardTwelve;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 13:
+							pCard = new CardThirteen;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 14:
+							pCard = new CardFourteen;
+							pCard->Load(In, pGrid, r);
+							break;
 						}
 					}
 
@@ -267,6 +333,27 @@ void OpenGrid::Execute() {
 							pCard = new CardNine;
 							pCard->Load(In, pGrid, r);
 							break;
+						case 10:
+							pCard = new CardTen;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 11:
+							pCard = new CardEleven;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 12:
+							pCard = new CardTwelve;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 13:
+							pCard = new CardThirteen;
+							pCard->Load(In, pGrid, r);
+							break;
+						case 14:
+							pCard = new CardFourteen;
+							pCard->Load(In, pGrid, r);
+							break;
+
 						}
 					}
 				}
